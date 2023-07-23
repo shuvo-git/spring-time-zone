@@ -1,0 +1,17 @@
+CREATE TABLE reward_management.reward_config
+(
+    id BIGINT NULL,
+    ref VARCHAR(100) NOT NULL,
+    msg VARCHAR(255) NOT NULL,
+    winner_msg VARCHAR(255) NOT NULL,
+    non_winner_msg VARCHAR(255) NOT NULL,
+    amount DECIMAL NOT NULL,
+    status TINYINT NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW() NOT NULL,
+    updated_at TIMESTAMP NULL,
+    CONSTRAINT reward_config_pk
+        PRIMARY KEY (id)
+);
+
+DROP SEQUENCE if exists reward_config_id_seq ;
+CREATE SEQUENCE  reward_config_id_seq START 1 INCREMENT 1;
