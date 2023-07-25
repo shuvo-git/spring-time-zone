@@ -6,12 +6,31 @@ CREATE TABLE reward_management.reward_config
     winner_msg VARCHAR(255) NOT NULL,
     non_winner_msg VARCHAR(255) NOT NULL,
     amount DECIMAL NOT NULL,
-    status TINYINT NOT NULL,
-    created_at TIMESTAMP DEFAULT NOW() NOT NULL,
+    status smallint NOT NULL,
+    created_at TIMESTAMP NULL,
     updated_at TIMESTAMP NULL,
     CONSTRAINT reward_config_pk
         PRIMARY KEY (id)
 );
 
-DROP SEQUENCE if exists reward_config_id_seq ;
-CREATE SEQUENCE  reward_config_id_seq START 1 INCREMENT 1;
+DROP SEQUENCE if exists reward_management.reward_config_id_seq ;
+CREATE SEQUENCE  reward_management.reward_config_id_seq START 1 INCREMENT 1;
+
+
+CREATE TABLE reward_management.reward_policy
+(
+    id BIGINT NOT NULL ,
+    reward_id BIGINT NOT NULL,
+    start_date TIMESTAMP NULL,
+    end_date TIMESTAMP NULL,
+    status SMALLINT NOT NULL,
+    created_at TIMESTAMP NULL,
+    updated_at TIMESTAMP NULL,
+    CONSTRAINT reward_policy_pk
+        PRIMARY KEY (id),
+    CONSTRAINT reward_policy_reward_config_id_fk
+        FOREIGN KEY (reward_id) REFERENCES reward_management.reward_config (id)
+);
+
+DROP SEQUENCE if exists reward_management.reward_policy_id_seq ;
+CREATE SEQUENCE  reward_management.reward_policy_id_seq START 1 INCREMENT 1;
