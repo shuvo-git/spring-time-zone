@@ -6,8 +6,9 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Builder
 @NoArgsConstructor
@@ -34,13 +35,13 @@ public class RewardPolicyEntity extends BaseEntity {
 
 
     @Column(name = "reward_id", nullable = false)
-    Instant rewardId;
+    Long rewardId;
 
     @Column(name = "start_date", nullable = false)
-    Instant startDate;
+    OffsetDateTime startDate;
 
     @Column(name = "end_date", nullable = false)
-    Instant endDate;
+    OffsetDateTime endDate;
 
     @Enumerated
     @Column(name = "status")

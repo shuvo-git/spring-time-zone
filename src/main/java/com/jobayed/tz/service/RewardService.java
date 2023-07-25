@@ -8,5 +8,6 @@ import org.springframework.data.domain.Page;
 
 public interface RewardService {
     RewardCreateResponse create(RewardRequest request);
+
     Page<RewardConfigEntity> getAll(PageRequest pageable);
 }

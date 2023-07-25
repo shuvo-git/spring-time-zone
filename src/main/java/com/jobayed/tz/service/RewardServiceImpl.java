@@ -33,7 +33,7 @@ public class RewardServiceImpl implements RewardService {
                 .amount(request.getAmount())
                 .status(YNEnum.Y)
                 .build();
-        log.info("RewardConfigEntity: {}",entity);
+        log.info("RewardConfigEntity: {}", entity);
 
         repository.save(entity);
 
