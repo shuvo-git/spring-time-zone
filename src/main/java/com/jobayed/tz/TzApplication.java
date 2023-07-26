@@ -10,13 +10,13 @@ import java.util.TimeZone;
 @SpringBootApplication
 public class TzApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TzApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(TzApplication.class, args);
+    }
 
-	@PostConstruct
-	public void init(){
-		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));   // It will set UTC timezone
-		System.out.println("Spring boot application running in UTC timezone :"+new Date());
-	}
+    @PostConstruct
+    public void init() {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));   // It will set UTC timezone
+        System.out.println("Spring boot application running in UTC timezone :" + new Date());
+    }
 }

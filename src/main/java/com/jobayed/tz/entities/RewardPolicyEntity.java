@@ -6,7 +6,9 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Builder
 @NoArgsConstructor
@@ -14,37 +16,32 @@ import java.math.BigDecimal;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "reward_config")
+@Table(name = "reward_policy")
 @EqualsAndHashCode
-public class RewardConfigEntity extends BaseEntity {
+public class RewardPolicyEntity extends BaseEntity {
     @JsonIgnore
-    @Id
+    @Id // 2020-10-08T10:30:00.000Z
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "reward_config_generator"
+            generator = "reward_policy_generator"
     )
     @SequenceGenerator(
-            name = "reward_config_generator",
-            sequenceName = "reward_config_id_seq",
+            name = "reward_policy_generator",
+            sequenceName = "reward_policy_id_seq",
             allocationSize = 1
     )
     @Column(name = "id", nullable = false)
     Long id;
 
-    @Column(name = "ref")
-    String ref;
 
-    @Column(name = "msg")
-    String message;
+    @Column(name = "reward_id", nullable = false)
+    Long rewardId;
 
-    @Column(name = "winner_msg")
-    String winnerMessage;
+    @Column(name = "start_date", nullable = false)
+    OffsetDateTime startDate;
 
-    @Column(name = "non_winner_msg")
-    String nonWinnerMessage;
-
-    @Column(name = "amount")
-    BigDecimal amount;
+    @Column(name = "end_date", nullable = false)
+    OffsetDateTime endDate;
 
     @Enumerated
     @Column(name = "status")
