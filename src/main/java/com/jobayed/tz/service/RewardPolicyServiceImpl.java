@@ -1,6 +1,7 @@
 package com.jobayed.tz.service;
 
 
+import com.jobayed.tz.endpoint.models.request.PageRequest;
 import com.jobayed.tz.endpoint.models.request.RewardPolicyRequest;
 import com.jobayed.tz.endpoint.models.response.RewardPolicyCreateResponse;
 import com.jobayed.tz.entities.RewardConfigEntity;
@@ -10,6 +11,8 @@ import com.jobayed.tz.repository.RewardConfigRepository;
 import com.jobayed.tz.repository.RewardPolicyRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,5 +50,14 @@ public class RewardPolicyServiceImpl implements RewardPolicyService {
                         .collect(Collectors.toSet()))
                 .build();
 
+    }
+
+    @Override
+    public Page<RewardPolicyEntity> getAll(PageRequest pageRequest) {
+        Pageable pageReq = org.springframework.data.domain.PageRequest.of(
+                pageRequest.getPageNumber(),
+                pageRequest.getPageSize()
+        );
+        return repository.findAll(pageReq);
     }
 }

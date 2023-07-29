@@ -6,6 +6,7 @@ import com.jobayed.tz.endpoint.models.request.RewardRequest;
 import com.jobayed.tz.endpoint.models.response.RewardCreateResponse;
 import com.jobayed.tz.endpoint.models.response.RewardPolicyCreateResponse;
 import com.jobayed.tz.entities.RewardConfigEntity;
+import com.jobayed.tz.entities.RewardPolicyEntity;
 import com.jobayed.tz.service.RewardPolicyService;
 import com.jobayed.tz.service.RewardService;
 import lombok.RequiredArgsConstructor;
@@ -28,9 +29,9 @@ public class RewardPolicyController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<RewardConfigEntity>> createReward(PageRequest pageRequest) {
+    public ResponseEntity<Page<RewardPolicyEntity>> getAll(PageRequest pageRequest) {
         log.info("{}", pageRequest);
-        return null;//ResponseEntity.ok();
+        return ResponseEntity.ok(rewardPolicyService.getAll(pageRequest));
     }
 
 }
